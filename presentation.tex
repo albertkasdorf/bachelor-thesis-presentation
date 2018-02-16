@@ -9,7 +9,13 @@
 %
 % 	- Hiding the presentation controls in LaTeX beamer presentation [closed]
 %		- https://stackoverflow.com/questions/3017030/hiding-the-presentation-controls-in-latex-beamer-presentation
-\setbeamertemplate{navigation symbols}{}
+%	\usetheme{Dresden}
+%		\usecolortheme{beaver}
+	\setbeamertemplate{navigation symbols}{}
+	%
+	% Gitterllinien auf den Folien anzeigen
+	%
+	\beamertemplategridbackground[1cm]
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -19,8 +25,40 @@
 %%%%%%%%%% 
 \usepackage{fontspec}
 \usepackage{lmodern}
+\usepackage{polyglossia}
+	\setmainlanguage[variant=german, spelling=new]{german}
 \usepackage{graphicx}
 	\graphicspath{{./logos/}{./bilder/}}
+
+%
+% bibtex vs. biber and biblatex vs. natbib
+%	- https://tex.stackexchange.com/questions/25701/bibtex-vs-biber-and-biblatex-vs-natbib
+% The biblatex Package - Programmable Bibliographies and Citations
+% 	- http://ftp.math.purdue.edu/mirrors/ctan.org/macros/latex/exptl/biblatex/doc/biblatex.pdf
+% Biblatex citation order
+%	- https://tex.stackexchange.com/questions/51434/biblatex-citation-order
+% 		- sorting=ydnt: Sort by year (descending), name, title.
+%		- sorting=none: Do not sort at all. All entries are processed in citation order.
+%
+\usepackage[
+	backend=biber,
+	style=numeric-comp,
+	%style=ieee,
+	sorting=none,
+]{biblatex}
+	\addbibresource{quellen.bib}
+	
+\usepackage{showframe}
+
+\usepackage[mode=text]{siunitx}
+	\sisetup{locale=DE, range-phrase=--, product-units=single, binary-units=true}
+	\DeclareSIUnit{\mAh}{mAh}
+	\DeclareSIUnit{\belmilliwatt}{Bm}
+	\DeclareSIUnit{\dBm}{\deci\belmilliwatt}
+	
+\usepackage{subcaption}
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -30,14 +68,18 @@
 %%%%%%%%%%
 \title[RO-SLAM mittels UWB]{Range-Only Simultaneous Localization and Mapping mittels Ultra-Wideband}
 %\subtitle{}
-\author{Albert Kasdorf}
+\author[A. Kasdorf]
+{
+	Albert Kasdorf\\
+	Matr.-Nr.: 3029294
+}
 \institute[FH Aachen]
 {
 	FH Aachen\\
 	Fachbereich Elektrotechnik und Informationstechnik\\
 	Ingenieur-Informatik
 }
-\date{2018}
+\date{26.02.2018}
 
 
 \begin{document}
@@ -67,75 +109,45 @@
 % 
 %
 %%%%%%%%%%
-\begin{frame}
-	\frametitle{Begrifflichkeiten}
-	\begin{itemize}
-		\item Lokalisierung (engl. Localization)
-		\item Kartenerstellung (engl. Mapping)
-		\item SLAM
-	\end{itemize}
-\end{frame}
+\part{Einführung}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% 
+%	- Was ist das Ziel? (Karte mit Beacons und Roboterpose)
+%		- Was ist Lokalisierung?
+%		- Was ist Kartenerstellung?
+%	- Was ist SLAM?
+%	- Was ist RO-SLAM?
+%	- Wie kommt man da hin?
+%	- Welche Informationen stehen bereit? ((Laserbasierte und Inkrementalgeberbasierte)Odometrie und Entfernungsmessungen)
+%	- Findet eine Triangulation statt? (Nein, die ist auch nicht notwendig.)
+%		- Trilateration und Multilateration
+%		- Lateration
+%		- https://de.wikipedia.org/wiki/Lateration#Trilateration_und_Multilateration
+%	- Unterschied zwischen Landmarke, Beacon, Anker, Tag, UWB Modul?
+%		- Landmarke: Ausgezeichnetes Merkmal der Umwelt
+%		- Beacon/Leuchtfeuer/Funkbarke: Landmarke auf Funkbasis
+%		- Anker: Beacon der als Referenzpunkt dient und sich nicht bewegt
+%		- Tag: Beacon der sich bewegen kann
+%		- UWB Modul: Konkrete technische Umsetzung eines Beacons
 %
 %%%%%%%%%%
-\begin{frame}
-	\frametitle{Range-Only Simultaneous Localization and Mapping}
-	Was ist das Ziel?
-	Wie kommt man da hin?
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% 
-%
-%%%%%%%%%%
-\begin{frame}
-	\frametitle{UWB-Modul}
-
+\begin{frame}{Einführung: Lokalisierung / Kartenerstellung / SLAM / RO-SLAM}
 	\begin{columns}
-		\column{0.5\textwidth}
-		\begin{itemize}
-			\item UWB (Bandbreite)
-			\item DecaWave UWB-Modul
-			\item Verarbeitungseinheit
-			\item Datenaustausch
-			\item Ladeelektronik
-			\item ...
-		\end{itemize}
-		
-		\column{0.5\textwidth}
-			\includegraphics[scale=0.2]{uwb_modul}
-			
-	\end{columns}
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% 
-%
-%%%%%%%%%%
-\begin{frame}
-	\frametitle{Kalibierung der Entfernungsmessung (1)}
-	\begin{columns}
-		\column{0.5\textwidth}
-		\begin{itemize}
-			\item DecaWave Verfahren
+		\begin{column}{0.5\linewidth}
+			Hier werden ganz tolle Bilder angezeigt!!! Versprochen ;-)
+		\end{column}
+		%\hspace{-50pt} 
+		\vrule{}
+		\begin{column}{0.5\linewidth}
 			\begin{itemize}
-				\item Genetischer Algorithmus
-				\item Instabiles Verfahren
+				\item Lokalisierung
+				\item Kartenerstellung
+				\item SLAM
+				\item RO-SLAM
 			\end{itemize}
-			
-			\item LGS
-		\end{itemize}
-		
-		\column{0.5\textwidth}
-			\includegraphics[scale=0.09]{decawave2014calibration_fig1}
+		\end{column}
 	\end{columns}
 \end{frame}
 
@@ -145,10 +157,35 @@
 % 
 %
 %%%%%%%%%%
-\begin{frame}
-	\frametitle{Kalibierung der Entfernungsmessung (2)}
-	\centering
-	\includegraphics[scale=0.06]{calibration_pentagram}
+\part{Ultra-Wideband}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- Was ist UWB?
+%		- Was sind die wichtigsten Eigenschaften für den RO-SLAM?
+%	- Aus welchen Komponenten besteht das Modul?
+%		- UWB Tranciever von DecaWave
+%	- todo
+%		- Neues Bild aufnehmen
+%
+%%%%%%%%%%
+\begin{frame}{UWB Modul}
+	\begin{columns}
+		\begin{column}{0.5\linewidth}
+			\includegraphics[width=\linewidth]{uwb_modul}
+		\end{column}
+		\begin{column}{0.5\linewidth}
+			\begin{itemize}
+				\item UWB
+				\item DecaWave
+				\item Verarbeitungseinheit
+				\item Datenaustausch
+				\item Ladeelektronik
+				\item ...
+			\end{itemize}
+		\end{column}
+	\end{columns}
 \end{frame}
 
 
@@ -157,86 +194,364 @@
 % 
 %
 %%%%%%%%%%
-\begin{frame}
-	\frametitle{Ergebnisse der Entfernungsmessung}
+\begin{frame}{Kalibierung (1/2) - Bestimmung der Antennenverzögerung}
 	\begin{columns}
-		\column{0.5\linewidth}
-			\centering
-			
-			LOS
-			\includegraphics[scale=0.14]{entfernungsmessung_2018_01_20_los}
-			
-			NLOS mit Metall (1)
-			\includegraphics[scale=0.14]{entfernungsmessung_2018_01_20_nlos_metal}
-		
-		\column{0.5\linewidth}
-			\centering
-			
-			NLOS mit Wasser
-			\includegraphics[scale=0.14]{entfernungsmessung_2018_01_20_nlos_water}
-			
-			NLOS mit Metall (2)
-			\includegraphics[scale=0.14]{entfernungsmessung_2018_01_20_nlos_metal2}
+		\begin{column}{0.5\linewidth}
+			\begin{figure}
+				\includegraphics[width=\linewidth]{decawave2014calibration_fig1}
+				\caption{\cite{decawave2014calibration}}
+			\end{figure}
+		\end{column}
+		\begin{column}{0.5\linewidth}
+			\begin{itemize}
+				\item Notwendigkeit?
+				\item DecaWave Verfahren
+					\begin{itemize}
+						\item Genetischer Algorithmus
+						\item Instabiles Verfahren
+					\end{itemize}
+				\item LGS Verfahren
+					\begin{itemize}
+						\item $t_{ad1} + t_{ad2} = tof_{measured} - tof_{actual}$
+					\end{itemize}
+			\end{itemize}
+		\end{column}
 	\end{columns}
 \end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- Warum wurde ein regelmäßiges Fünfeck / Pentagramm verwendet?
+%		- Nur zwei unterschiedliche Längen
+%		- Der Radius reicht vollkommen aus um alle anderen Seiten zu berechen
+%	- todo
+%		- Bild etwas beschneiden
+%
+%%%%%%%%%%
+\begin{frame}{Kalibierung (2/2) - Versuchsaufbau}
+	\begin{figure}
+		\centering
+		\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{calibration_pentagram}
+	\end{figure}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- todo
+%		- Caption in den Titel des Bildes schreiben.
+%
+%%%%%%%%%%
+\begin{frame}{Ergebnisse der Entfernungmessung mit mehreren Materialien}
+	\begin{figure}
+		\centering
+		\begin{subfigure}[t]{0.47\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{entfernungsmessung_2018_01_20_los}
+%			\caption{LoS}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[t]{0.47\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{entfernungsmessung_2018_01_20_nlos_water}
+%			\caption{NLoS mit Wasser.}
+		\end{subfigure}
+		\par
+		\bigskip
+		\begin{subfigure}[t]{0.47\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{entfernungsmessung_2018_01_20_nlos_metal}
+%			\caption{NLoS mit einem Aluminiumblech (\SI{50}{\centi\meter})}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[t]{0.47\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{entfernungsmessung_2018_01_20_nlos_metal2}
+%			\caption{NLoS mit einem Aluminiumblech (\SI{5}{\centi\meter})}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % 
 %
 %%%%%%%%%%
-\begin{frame}
-	\frametitle{Theorie 1/3: Gaussverteilung}
+\part{Range-Only SLAM}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	- FastSLAM
+%		- http://slideplayer.com/slide/4547004/
+%		- FastSLAM Update Action
+% 	- Rao-Blackwellized Partikelfilter
+%		- Problem mit Parikelfilter und großem Zustandsraum
+% 		- Kernidee
+%	- \cite{thrun2005probabilistic}
+%		- Probabilistic robotics
+%	- todo
+%		- Das andere Bild für den RBPF verwenden.
+%
+%%%%%%%%%%
+\begin{frame}{Theorie (1/3) - Partikel Filter}
 	\begin{columns}
-		\column{0.5\linewidth}
-			\centering
-			2D
-		
-		\column{0.5\linewidth}
-			\centering
-			Multivariat
-			%https://upload.wikimedia.org/wikipedia/commons/9/95/Multivariate_normal_sample.svg
+		\begin{column}{0.5\linewidth}
+			\parbox[c][.7\textheight][c]{\columnwidth}
+			{
+				\includegraphics<1>[width=\linewidth]{ekf_slam_fig_10_3}
+				\includegraphics<2>[width=\linewidth]{fast_slam_particle_representation}
+			}
+		\end{column}
+		\begin{column}{0.5\linewidth}
+			\begin{itemize}
+				\item EKF SLAM
+					\begin{itemize}
+						\item Kombinierter Zustandsvektor
+					\end{itemize}
+				\item PF SLAM
+					\begin{itemize}
+						\item Aufspaltung des Zustandsvektor
+						\item Rao-Blackwellized Partikel Filter
+						\item FastSLAM
+					\end{itemize}
+			\end{itemize}
+		\end{column}
 	\end{columns}
 \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%
+%	- \cite{blanco2008pure}
+%		- A pure probabilistic approach to range-only SLAM
 %
 %%%%%%%%%%
-\begin{frame}
-	\frametitle{Theorie 2/3: Monte Carlo mit Sum of Gaussian (SOG)}
+\begin{frame}{Theorie (2/3) - Monte Carlo Partikel Filter mit Hilfspartikel Filter}
 	\begin{columns}
 		\column{0.5\linewidth}
-			\centering
-			\includegraphics[scale=0.5]{blanco2008efficient_fig10a}		
-		
+			\begin{overlayarea}{\textwidth}{.9\textheight}
+				\only<1>
+				{
+					\begin{figure}
+						\centering
+						\includegraphics[width=\linewidth]{blanco2008pure_fig3e}
+						\caption{\cite{blanco2008pure}}
+					\end{figure}
+				}
+				\only<2>
+				{
+					\begin{figure}
+						\centering
+						\includegraphics[width=\linewidth]{blanco2008pure_fig3f}
+						\caption{\cite{blanco2008pure}}
+					\end{figure}
+				}
+				\only<3>
+				{
+					\begin{figure}
+						\centering
+						\includegraphics[width=\linewidth]{blanco2008pure_fig3g}
+						\caption{\cite{blanco2008pure}}
+					\end{figure}
+				}
+				\only<4>
+				{
+					\begin{figure}
+						\centering
+						\includegraphics[width=\linewidth]{blanco2008pure_fig3h}
+						\caption{\cite{blanco2008pure}}
+					\end{figure}
+				}
+			\end{overlayarea}		
 		\column{0.5\linewidth}
-			\centering
-			\includegraphics[scale=0.5]{blanco2008efficient_fig10b}
+			\begin{itemize}
+				\item ...
+					\begin{itemize}
+						\item ...
+					\end{itemize}
+				\item ...
+					\begin{itemize}
+						\item ...
+					\end{itemize}
+			\end{itemize}
 	\end{columns}
 \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%
+%	- https://www.mrpt.org/tutorials/slam-algorithms/rangeonly_slam/
+%	- \cite{blanco2008efficient}
+%		- Efficient probabilistic range-only SLAM
 %
 %%%%%%%%%%
 \begin{frame}
-	\frametitle{Theorie 3/3:  Monte Carlo mit Hilfs-Partikel-Filter}
+	\frametitle{Theorie (3/3) - Monte Carlo Partikel Filter mit Sum of Gaussian (SOG)}
 	\begin{columns}
 		\column{0.5\linewidth}
-			\centering
-			\includegraphics[scale=0.4]{blanco2008pure_fig3e}
-		
+			\begin{overlayarea}{\textwidth}{.9\textheight}
+				\only<1>
+				{
+					\begin{figure}
+						\centering
+						\includegraphics[width=\linewidth]{blanco2008efficient_fig3_1}
+						\caption{\cite{blanco2008efficient}}
+					\end{figure}
+				}
+				\only<2>
+				{
+					\begin{figure}
+						\centering
+						\includegraphics[width=\linewidth]{blanco2008efficient_fig3_2}
+						\caption{\cite{blanco2008efficient}}
+					\end{figure}
+				}
+				\only<3>
+				{
+					\begin{figure}
+						\centering
+						\includegraphics[width=\linewidth]{blanco2008efficient_fig3_3}
+						\caption{\cite{blanco2008efficient}}
+					\end{figure}
+				}
+				\only<4>
+				{
+					\begin{figure}
+						\centering
+						\includegraphics[width=\linewidth]{blanco2008efficient_fig3_4}
+						\caption{\cite{blanco2008efficient}}
+					\end{figure}
+				}
+			\end{overlayarea}
 		\column{0.5\linewidth}
-			\centering			
-			\includegraphics[scale=0.23]{blanco2008pure_fig3f}
-			\par\bigskip
-			\includegraphics[scale=0.23]{blanco2008pure_fig3g}
+			\begin{itemize}
+				\item ...
+					\begin{itemize}
+						\item ...
+					\end{itemize}
+				\item ...
+					\begin{itemize}
+						\item ...
+					\end{itemize}
+			\end{itemize}
 	\end{columns}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% 
+%
+%%%%%%%%%%
+\begin{frame}{Odometrie}
+
+	\begin{figure}
+		\centering
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_trajectory1}
+			\caption{Ground Truth}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_trajectory2}
+			\caption{Inkrementalgeber}
+		\end{subfigure}
+		\par
+		\bigskip
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_trajectory3}
+			\caption{Laser Scan Matcher}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_trajectory4}
+			\caption{Range Flow-based 2D Odometry}
+		\end{subfigure}
+	\end{figure}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% 
+%
+%%%%%%%%%%
+\begin{frame}{Positionsschätzung der Roboterplattform}
+
+	\begin{figure}
+		\centering
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_3_trajectory_pf}
+			\caption{Reale UWB Module}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_1_trajectory_pf}
+			\caption{Reale UWB Module}
+		\end{subfigure}
+		\par
+		\bigskip
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_5_trajectory_pf}
+			\caption{Virtuelle UWB Module.}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_4_trajectory_pf}
+			\caption{Virtuelle UWB Module.}
+		\end{subfigure}
+	\end{figure}
+	
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% 
+%
+%%%%%%%%%%
+\begin{frame}{Positionsschätzung der UWB Module}
+
+	\begin{figure}
+		\centering
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_3_beacon_error}
+			\caption{Reale UWB Module}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_1_beacon_error}
+			\caption{Reale UWB Module}
+		\end{subfigure}
+		\par
+		\bigskip
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_5_beacon_error}
+			\caption{Virtuelle UWB Module}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_4_beacon_error}
+			\caption{Virtuelle UWB Module}
+		\end{subfigure}
+	\end{figure}
+
 \end{frame}
 
 
@@ -248,10 +563,32 @@
 \begin{frame}
 	\frametitle{Fazit}
 	\begin{itemize}
-		\item ...
-		\item ...
+		\item UWB Modul
+			\begin{itemize}
+				\item ...
+				\item ...
+			\end{itemize}
+		\item RO-SLAM
+			\begin{itemize}
+				\item ...
+				\item ...
+			\end{itemize}
 	\end{itemize}
 \end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% 
+%
+%%%%%%%%%%
+\begin{frame}[allowframebreaks]{Literaturverzeichnis}
+	\printbibliography[
+		heading=bibintoc,
+		title={Literaturverzeichnis},
+	]
+\end{frame}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -264,7 +601,5 @@
 %\end{frame}
 
 
-
-
-
 \end{document}
+
