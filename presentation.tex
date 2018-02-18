@@ -293,11 +293,10 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%	- todo
-%		- Caption in den Titel des Bildes schreiben.
+%	- /.../bachelor-thesis/aufnahmen/2018-01-20_los_nlos_measurement/auswertung_figure.m
 %
 %%%%%%%%%%
-\begin{frame}{Ergebnisse der Entfernungmessung mit mehreren Materialien}
+\begin{frame}{Entfernungmessung mit mehreren Materialien}
 	\begin{figure}
 		\centering
 		\begin{subfigure}[t]{0.47\linewidth}
@@ -350,7 +349,7 @@
 %		- Das andere Bild für den RBPF verwenden.
 %
 %%%%%%%%%%
-\begin{frame}{Theorie (1/3) - Partikel Filter}
+\begin{frame}{Theorie (1/3)\\Partikel Filter}
 	\begin{columns}
 		\begin{column}{0.5\linewidth}
 			\parbox[c][.7\textheight][c]{\columnwidth}
@@ -361,11 +360,11 @@
 		\end{column}
 		\begin{column}{0.5\linewidth}
 			\begin{itemize}
-				\item EKF SLAM
+				\item<1-> EKF SLAM
 					\begin{itemize}
 						\item Kombinierter Zustandsvektor
 					\end{itemize}
-				\item PF SLAM
+				\item<2-> PF SLAM
 					\begin{itemize}
 						\item Aufspaltung des Zustandsvektor
 						\item Rao-Blackwellized Partikel Filter
@@ -383,7 +382,7 @@
 %		- A pure probabilistic approach to range-only SLAM
 %
 %%%%%%%%%%
-\begin{frame}{Theorie (2/3) - Monte Carlo Partikel Filter mit Hilfspartikel Filter}
+\begin{frame}{Theorie (2/3)\\Monte Carlo Partikel Filter mit Hilfspartikel Filter}
 	\begin{columns}
 		\column{0.5\linewidth}
 			\begin{overlayarea}{\textwidth}{.9\textheight}
@@ -443,7 +442,7 @@
 %
 %%%%%%%%%%
 \begin{frame}
-	\frametitle{Theorie (3/3) - Monte Carlo Partikel Filter mit Sum of Gaussian (SOG)}
+	\frametitle{Theorie (3/3)\\Monte Carlo Partikel Filter mit Sum of Gaussian}
 	\begin{columns}
 		\column{0.5\linewidth}
 			\begin{overlayarea}{\textwidth}{.9\textheight}
@@ -497,36 +496,37 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% 
+%	- Warum ist die Odometrie so wichtig?
+%	- Wie bin ich an die Ground Truth Trajektorie gekommen?
 %
 %%%%%%%%%%
 \begin{frame}{Odometrie}
 
 	\begin{figure}
 		\centering
-		\begin{subfigure}{0.4\linewidth}
+		\begin{subfigure}{0.47\linewidth}
 			\centering
 			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_trajectory1}
-			\caption{Ground Truth}
+			%\caption{Ground Truth}
 		\end{subfigure}
 		\hfill
-		\begin{subfigure}{0.4\linewidth}
+		\begin{subfigure}{0.47\linewidth}
 			\centering
 			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_trajectory2}
-			\caption{Inkrementalgeber}
+			%\caption{Inkrementalgeber}
 		\end{subfigure}
 		\par
 		\bigskip
-		\begin{subfigure}{0.4\linewidth}
+		\begin{subfigure}{0.47\linewidth}
 			\centering
 			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_trajectory3}
-			\caption{Laser Scan Matcher}
+			%\caption{Laser Scan Matcher}
 		\end{subfigure}
 		\hfill
-		\begin{subfigure}{0.4\linewidth}
+		\begin{subfigure}{0.47\linewidth}
 			\centering
 			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_trajectory4}
-			\caption{Range Flow-based 2D Odometry}
+			%\caption{Range Flow-based 2D Odometry}
 		\end{subfigure}
 	\end{figure}
 
@@ -542,29 +542,29 @@
 
 	\begin{figure}
 		\centering
-		\begin{subfigure}{0.4\linewidth}
+		\begin{subfigure}{0.41\linewidth}
 			\centering
 			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_3_trajectory_pf}
-			\caption{Reale UWB Module}
+			%\caption{Reale UWB Module}
 		\end{subfigure}
 		\hfill
-		\begin{subfigure}{0.4\linewidth}
+		\begin{subfigure}{0.41\linewidth}
 			\centering
 			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_1_trajectory_pf}
-			\caption{Reale UWB Module}
+			%\caption{Reale UWB Module}
 		\end{subfigure}
 		\par
 		\bigskip
-		\begin{subfigure}{0.4\linewidth}
+		\begin{subfigure}{0.41\linewidth}
 			\centering
 			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_5_trajectory_pf}
-			\caption{Virtuelle UWB Module.}
+			%\caption{Virtuelle UWB Module.}
 		\end{subfigure}
 		\hfill
-		\begin{subfigure}{0.4\linewidth}
+		\begin{subfigure}{0.41\linewidth}
 			\centering
 			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_4_trajectory_pf}
-			\caption{Virtuelle UWB Module.}
+			%\caption{Virtuelle UWB Module.}
 		\end{subfigure}
 	\end{figure}
 	
