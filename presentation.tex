@@ -392,7 +392,7 @@
 \begin{frame}{Theorie (2/3)\\Monte Carlo Partikel Filter mit Hilfspartikel Filter}
 	\begin{columns}
 		\column{0.5\linewidth}
-			\begin{overlayarea}{\textwidth}{.9\textheight}
+			\begin{overlayarea}{\textwidth}{.7\textheight}
 				\only<1>
 				{
 					\begin{figure}
@@ -453,13 +453,16 @@
 %	- https://www.mrpt.org/tutorials/slam-algorithms/rangeonly_slam/
 %	- \cite{blanco2008efficient}
 %		- Efficient probabilistic range-only SLAM
+%	- Kugelkoordinaten
+%		- 3 Einheitsvektoren (1x Radial, 2x Tangential)
+%		- Stachlige Kugel?!
 %
 %%%%%%%%%%
 \begin{frame}
 	\frametitle{Theorie (3/3)\\Monte Carlo Partikel Filter mit Sum of Gaussian}
 	\begin{columns}
 		\column{0.5\linewidth}
-			\begin{overlayarea}{\textwidth}{.9\textheight}
+			\begin{overlayarea}{\textwidth}{.5\textheight}
 				\only<1>
 				{
 					\begin{figure}
@@ -495,14 +498,20 @@
 			\end{overlayarea}
 		\column{0.5\linewidth}
 			\begin{itemize}
-				\item ...
-					\begin{itemize}
-						\item ...
-					\end{itemize}
-				\item ...
-					\begin{itemize}
-						\item ...
-					\end{itemize}
+				\item Hauptpartikel Filter
+				\begin{itemize}
+					\item Betrachung eines Partikels
+				\end{itemize}
+				\item Sum of Gaussian (SOG)
+				\begin{itemize}
+					\item Radial angeordnete Normalverteilungen
+					\item Gewicht pro Normalverteilung
+					\item Pro UWB Modul
+				\end{itemize}
+				\item<4-> Nach der Konvergenz
+				\begin{itemize}
+					\item Umwandung in einen EKF
+				\end{itemize}
 			\end{itemize}
 	\end{columns}
 \end{frame}
