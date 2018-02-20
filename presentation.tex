@@ -380,6 +380,13 @@
 %
 %	- \cite{blanco2008pure}
 %		- A pure probabilistic approach to range-only SLAM
+%	- decouple the estimation of the robot poses and the map (rbpf)
+%	- robot path is sample based
+%	- for each beacon that is observed for the first time, we add a new auxiliary particle filter to each one of the rbpf samples.
+%	- the auxiliary pf will eventually converge from the initial circular shape towards a small Gaussian-like shape, and at this moment it will be raplaced by a standard EKF.
+%	- the location of the beacon is approximated by a set of N samples m^[i,k] with weights \beta^[i,k] for k=1..N.
+%	- Initialize the Monte Carlo representation of the beacon density by drawing samples m^[i,k] along the circle centered at x_t^[i] at any direction in the whole 360° range and at a distance of z_t plus the additive random noise. (assign them with equal inital weights)
+%	- we drop particles with weights below 10^-5 times the hightest weight.
 %
 %%%%%%%%%%
 \begin{frame}{Theorie (2/3)\\Monte Carlo Partikel Filter mit Hilfspartikel Filter}
@@ -421,17 +428,24 @@
 			\end{overlayarea}		
 		\column{0.5\linewidth}
 			\begin{itemize}
-				\item ...
-					\begin{itemize}
-						\item ...
-					\end{itemize}
-				\item ...
-					\begin{itemize}
-						\item ...
-					\end{itemize}
+				\item Hauptpartikel Filter
+				\begin{itemize}
+					\item Betrachung eines Partikels
+				\end{itemize}
+				\item Hilfspartikel Filter
+				\begin{itemize}
+					\item Pro UWB Modul
+					\item Radiale Verteilung
+					\item Gewicht pro Partikel
+				\end{itemize}
+				\item<4-> Nach der Konvergenz
+				\begin{itemize}
+					\item Umwandung in einen EKF
+				\end{itemize}
 			\end{itemize}
 	\end{columns}
 \end{frame}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
