@@ -60,7 +60,7 @@
 
 	% How to remove figure caption prefix “figure” in beamer
 	% https://tex.stackexchange.com/questions/82456/how-to-remove-figure-caption-prefix-figure-in-beamer
-	\captionsetup[figure]{labelformat=empty}
+	\captionsetup[figure]{labelformat=empty, font=scriptsize, skip=2pt}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -129,7 +129,7 @@
 %		- https://de.wikipedia.org/wiki/Lateration#Trilateration_und_Multilateration
 %
 %%%%%%%%%%
-\begin{frame}{Einführung - Lokalisierung, Kartenerstellung, SLAM, RO-SLAM}
+\begin{frame}{Einführung\\\normalsize{Lokalisierung, Kartenerstellung, SLAM, RO-SLAM}}
 	\begin{columns}
 		\begin{column}{0.5\linewidth}
 			\begin{overlayarea}{\textwidth}{.35\textheight}
@@ -193,7 +193,7 @@
 %		- UWB Modul: Konkrete technische Umsetzung eines Beacons
 %
 %%%%%%%%%%
-\begin{frame}{UWB Modul - Erstellte Hardware}
+\begin{frame}{UWB Modul\\\normalsize{Erstellte Hardware}}
 	\begin{columns}
 		\begin{column}{0.5\linewidth}
 			\centering
@@ -228,21 +228,36 @@
 %	- Warum muss überhaupt kalibiert werden?
 %
 %%%%%%%%%%
-\begin{frame}{Kalibierung (1/3) - Bestimmung der Antennenverzögerung}
+\begin{frame}{Kalibierung der UWB Module (1/2)\\\normalsize{Bestimmung der Antennenverzögerung}}
 	\begin{columns}
 		\begin{column}{0.5\linewidth}
-			\begin{figure}
-				\includegraphics[width=\linewidth]{decawave2014calibration_fig1}
-				\caption{\cite{decawave2014calibration}}
-			\end{figure}
+			\centering
+			%\begin{figure}
+			%	\includegraphics[width=\linewidth]{decawave2014calibration_fig1}
+			%	\caption{\cite{decawave2014calibration}}
+			%\end{figure}
+			%\includegraphics[width=0.9\linewidth]{calibration_pentagram2}
+
+
+			\begin{overlayarea}{\linewidth}{.4\textheight}
+				\only<1>
+				{
+					\begin{figure}
+						\includegraphics[width=\linewidth]{decawave2014calibration_fig1}
+						\caption{\cite{decawave2014calibration}}
+					\end{figure}
+				}
+				\only<2>
+				{
+					\includegraphics[width=\linewidth]{calibration_pentagram2}
+				}
+			\end{overlayarea}
 		\end{column}
 		\begin{column}{0.5\linewidth}
 			\begin{itemize}
-				\item Antennenverzögerung
 				\item DecaWave Verfahren
 					\begin{itemize}
 						\item Genetischer Algorithmus
-						\item Instabiles Verfahren
 					\end{itemize}
 				\item LGS Verfahren
 					\begin{itemize}
@@ -261,10 +276,10 @@
 %		- Der Radius reicht vollkommen aus um alle anderen Seiten zu berechen
 %
 %%%%%%%%%%
-\begin{frame}{Kalibierung (2/3) - Versuchsaufbau}
-	\centering
-	\includegraphics[width=\linewidth]{calibration_pentagram2}
-\end{frame}
+%\begin{frame}{Kalibierung (2/3)\\\normalsize{Versuchsaufbau}}
+%	\centering
+%	\includegraphics[width=\linewidth]{calibration_pentagram2}
+%\end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -272,7 +287,8 @@
 %
 %
 %%%%%%%%%%
-\begin{frame}{Kalibierung (3/3) - Auswertung}
+\begin{frame}{Kalibierung der UWB Module (2/2)\\\normalsize{Ergebnisse}}
+	\centering
 	\begin{table}
 		\centering
 		\begin{tabular}{||c||c||ccc||}
@@ -288,6 +304,8 @@
 		\end{tabular}
 		%\caption{Berechnete Werte für die Antennenverzögerung pro UWB Modul.}
 	\end{table}
+	\par\bigskip
+	$\text{=> } \SI{1}{ns} \approx \SI{0.3}{\meter}$
 \end{frame}
 
 
@@ -296,7 +314,7 @@
 %	- /.../bachelor-thesis/aufnahmen/2018-01-20_los_nlos_measurement/auswertung_figure.m
 %
 %%%%%%%%%%
-\begin{frame}{Entfernungmessung mit mehreren Materialien}
+\begin{frame}{UWB Module\\\normalsize{Entfernungsmessungen mit mehreren Materialien}}
 	\begin{figure}
 		\centering
 		\begin{subfigure}[t]{0.47\linewidth}
@@ -349,14 +367,32 @@
 %		- Das andere Bild für den RBPF verwenden.
 %
 %%%%%%%%%%
-\begin{frame}{Theorie (1/3)\\Partikel Filter}
+\begin{frame}{Theorie (1/3)\\\normalsize{Partikel Filter}}
 	\begin{columns}
 		\begin{column}{0.5\linewidth}
-			\parbox[c][.7\textheight][c]{\columnwidth}
-			{
-				\includegraphics<1>[width=\linewidth]{ekf_slam_fig_10_3}
-				\includegraphics<2>[width=\linewidth]{fast_slam_particle_representation}
-			}
+			%\parbox[c][.7\textheight][c]{\columnwidth}
+			%{
+			%	\includegraphics<1>[width=\linewidth]{ekf_slam_fig_10_3}
+			%	\includegraphics<2>[width=\linewidth]{fast_slam_particle_representation}
+			%}
+			\begin{overlayarea}{\textwidth}{.6\textheight}
+				\only<1>
+				{
+					\begin{figure}
+						\centering
+						\includegraphics<1>[width=\linewidth]{ekf_slam_fig_10_3}
+						\caption{\cite{thrun2005probabilistic}}
+					\end{figure}
+				}
+				\only<2>
+				{
+					\begin{figure}
+						\centering
+						\includegraphics<2>[width=\linewidth]{fast_slam_particle_representation}
+						\caption{\cite{thrun2005probabilistic}}
+					\end{figure}
+				}
+			\end{overlayarea}
 		\end{column}
 		\begin{column}{0.5\linewidth}
 			\begin{itemize}
@@ -389,7 +425,7 @@
 %	- we drop particles with weights below 10^-5 times the hightest weight.
 %
 %%%%%%%%%%
-\begin{frame}{Theorie (2/3)\\Monte Carlo Partikel Filter mit Hilfspartikel Filter}
+\begin{frame}{Theorie (2/3)\\\normalsize{Monte Carlo Partikel Filter mit Hilfspartikel Filter}}
 	\begin{columns}
 		\column{0.5\linewidth}
 			\begin{overlayarea}{\textwidth}{.7\textheight}
@@ -425,7 +461,7 @@
 						\caption{\cite{blanco2008pure}}
 					\end{figure}
 				}
-			\end{overlayarea}		
+			\end{overlayarea}
 		\column{0.5\linewidth}
 			\begin{itemize}
 				\item Hauptpartikel Filter
@@ -459,7 +495,7 @@
 %
 %%%%%%%%%%
 \begin{frame}
-	\frametitle{Theorie (3/3)\\Monte Carlo Partikel Filter mit Sum of Gaussian}
+	\frametitle{Theorie (3/3)\\\normalsize{Monte Carlo Partikel Filter mit Sum of Gaussian}}
 	\begin{columns}
 		\column{0.5\linewidth}
 			\begin{overlayarea}{\textwidth}{.5\textheight}
@@ -524,7 +560,7 @@
 %	- /.../bachelor-thesis/auswertungen/trajectory/auswertung.m
 %
 %%%%%%%%%%
-\begin{frame}{Odometrie}
+\begin{frame}{RO-SLAM\\\normalsize{Odometrie der Roboterplattform}}
 
 	\begin{figure}
 		\centering
@@ -562,7 +598,7 @@
 %	- /.../bachelor-thesis/auswertungen/ro_slam_data/pose_diff.m
 %
 %%%%%%%%%%
-\begin{frame}{Positionsschätzung der Roboterplattform}
+\begin{frame}{RO-SLAM\\\normalsize{Positionsschätzung der Roboterplattform}}
 
 	\begin{figure}
 		\centering
@@ -581,13 +617,15 @@
 		\bigskip
 		\begin{subfigure}{0.41\linewidth}
 			\centering
-			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_5_trajectory_pf}
+			%\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_5_trajectory_pf}
+			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_21_trajectory_pf}
 			%\caption{Virtuelle UWB Module.}
 		\end{subfigure}
 		\hfill
 		\begin{subfigure}{0.41\linewidth}
 			\centering
-			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_4_trajectory_pf}
+			%\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_4_trajectory_pf}
+			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_22_trajectory_pf}
 			%\caption{Virtuelle UWB Module.}
 		\end{subfigure}
 	\end{figure}
@@ -598,9 +636,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %	- /.../bachelor-thesis/auswertungen/ro_slam_data/viz_bor_mean_cov.m
+%	+ Todo
+%		+ Record_2018-02-08-12-33-53_filtered_20
+%	- Die Unsicherheit ist am Anfang sehr groß, da das Verfahren noch nicht konvergiert ist.
 %
 %%%%%%%%%%
-\begin{frame}{Positionsschätzung der UWB Module}
+\begin{frame}{RO-SLAM\\\normalsize{Positionsschätzung der UWB Module}}
 
 	\begin{figure}
 		\centering
@@ -619,13 +660,15 @@
 		\bigskip
 		\begin{subfigure}{0.41\linewidth}
 			\centering
-			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_5_beacon_error}
+			%\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_5_beacon_error}
+			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_21_beacon_error}
 			%\caption{Virtuelle UWB Module}
 		\end{subfigure}
 		\hfill
 		\begin{subfigure}{0.41\linewidth}
 			\centering
-			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_4_beacon_error}
+			%\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_4_beacon_error}
+			\includegraphics[width=\linewidth]{Record_2018-02-08-12-33-53_filtered_22_beacon_error}
 			%\caption{Virtuelle UWB Module}
 		\end{subfigure}
 	\end{figure}
@@ -635,21 +678,60 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+% 
+%
+%%%%%%%%%%
+\begin{frame}{RO-SLAM\\\normalsize{Fehler der Entfernungsmessung}}
+	\begin{figure}
+		\centering
+		\begin{subfigure}{0.6\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{2017-12-18-11-53-54_beacon_range_error1}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}{0.38\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{2017-12-18-11-53-54_beacon_range_error2}
+		\end{subfigure}
+		\par
+		\bigskip
+		\begin{subfigure}{0.6\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{2018-02-08-12-33-53_beacon_range_error1}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}{0.38\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{2018-02-08-12-33-53_beacon_range_error2}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
 %	- Beaconfehler durch den Roboter (2018-02-08-13-09-17)
 %
 %%%%%%%%%%
+\part{}
 \begin{frame}
 	\frametitle{Fazit}
 	\begin{itemize}
-		\item UWB Module
+		\item<1-> UWB
 			\begin{itemize}
-				\item Erstellung der UWB Module möglich.
-				\item Entfernungsmessung möglich, aber ohne Optimierungen.
+				\item Technologie mit vielen Anwendungsmöglichkeiten
+				\item Spezialisierte Einsatzgebiete
 			\end{itemize}
-		\item RO-SLAM
+		\item<2-> UWB Module
 			\begin{itemize}
-				\item Ergebnisse abhängig von der Qualität der Entfernungsmessung.
-				\item Wenig Einstellungsmöglichkeiten.
+				\item Aufbau und Entfernungsmessung möglich, aber ohne Optimierungen
+				\item Abwegung der Nutzen des kommerziellen Produktes
+			\end{itemize}
+		\item<3-> RO-SLAM
+			\begin{itemize}
+				\item Rein probabilistisches Verfahren
+				\item Genauigkeit von =< \SI{10}{\centi\meter} konnte nicht erreicht werden
+				\item Ergebnisse sind abhängig von der Qualität der Entfernungsmessung
 			\end{itemize}
 	\end{itemize}
 \end{frame}
