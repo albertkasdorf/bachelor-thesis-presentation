@@ -203,8 +203,10 @@
 			\begin{itemize}
 				\item<1-> UWB
 				\begin{itemize}
-					\item Basisband, keine Modulation
-					\item Bandbreite bis zu \SI{500}{\MHz}
+					%\item Basisband, keine Modulation
+					%\item Bandbreite bis zu \SI{500}{\MHz}
+					\item Kurze Impulse
+					\item Präzise Entfernungsmessung
 				\end{itemize}
 				\item<2-> Begrifflichkeiten
 				\begin{itemize}
@@ -681,31 +683,31 @@
 % 
 %
 %%%%%%%%%%
-\begin{frame}{RO-SLAM\\\normalsize{Fehler der Entfernungsmessung}}
-	\begin{figure}
-		\centering
-		\begin{subfigure}{0.6\linewidth}
-			\centering
-			\includegraphics[width=\linewidth]{2017-12-18-11-53-54_beacon_range_error1}
-		\end{subfigure}
-		\hfill
-		\begin{subfigure}{0.38\linewidth}
-			\centering
-			\includegraphics[width=\linewidth]{2017-12-18-11-53-54_beacon_range_error2}
-		\end{subfigure}
-		\par
-		\bigskip
-		\begin{subfigure}{0.6\linewidth}
-			\centering
-			\includegraphics[width=\linewidth]{2018-02-08-12-33-53_beacon_range_error1}
-		\end{subfigure}
-		\hfill
-		\begin{subfigure}{0.38\linewidth}
-			\centering
-			\includegraphics[width=\linewidth]{2018-02-08-12-33-53_beacon_range_error2}
-		\end{subfigure}
-	\end{figure}
-\end{frame}
+%\begin{frame}{RO-SLAM\\\normalsize{Fehler der Entfernungsmessung}}
+%	\begin{figure}
+%		\centering
+%		\begin{subfigure}{0.6\linewidth}
+%			\centering
+%			\includegraphics[width=\linewidth]{2017-12-18-11-53-54_beacon_range_error1}
+%		\end{subfigure}
+%		\hfill
+%		\begin{subfigure}{0.38\linewidth}
+%			\centering
+%			\includegraphics[width=\linewidth]{2017-12-18-11-53-54_beacon_range_error2}
+%		\end{subfigure}
+%		\par
+%		\bigskip
+%		\begin{subfigure}{0.6\linewidth}
+%			\centering
+%			\includegraphics[width=\linewidth]{2018-02-08-12-33-53_beacon_range_error1}
+%		\end{subfigure}
+%		\hfill
+%		\begin{subfigure}{0.38\linewidth}
+%			\centering
+%			\includegraphics[width=\linewidth]{2018-02-08-12-33-53_beacon_range_error2}
+%		\end{subfigure}
+%	\end{figure}
+%\end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -725,7 +727,7 @@
 		\item<2-> UWB Module
 			\begin{itemize}
 				\item Aufbau und Entfernungsmessung möglich, aber ohne Optimierungen
-				\item Abwegung der Nutzen des kommerziellen Produktes
+				\item Abwegung über die Nutzung des kommerziellen Produktes
 			\end{itemize}
 		\item<3-> RO-SLAM
 			\begin{itemize}
